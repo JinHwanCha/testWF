@@ -215,25 +215,6 @@ if (counters.length > 0) {
 }
 
 // ===========================
-// Image Lazy Loading Effect
-// ===========================
-const imageElements = document.querySelectorAll('.work-image, .gallery-image, .news-image, .featured-image');
-
-imageElements.forEach((img, index) => {
-    // Create different gradient colors for variety
-    const colors = [
-        'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-        'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-        'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-        'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-        'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
-    ];
-    
-    img.style.background = colors[index % colors.length];
-});
-
-// ===========================
 // Page Load Animation
 // ===========================
 window.addEventListener('load', () => {
