@@ -58,7 +58,7 @@ function initGroupToggle() {
             
             const ceoSignature = document.querySelector('.ceo-signature strong');
             if (ceoSignature) {
-                ceoSignature.textContent = '내수동교회 대학부 부장';
+                ceoSignature.textContent = '내수동교회 대학부 목사';
             }
                         const companyInfoHeader = document.querySelector('.company-info .section-header h2');
             if (companyInfoHeader) companyInfoHeader.textContent = '대학부 소개';
@@ -193,7 +193,7 @@ function initGroupToggle() {
             
             const ceoSignature = document.querySelector('.ceo-signature strong');
             if (ceoSignature) {
-                ceoSignature.textContent = '내수동교회 청년부 부장';
+                ceoSignature.textContent = '내수동교회 청년부 목사';
             }
                         const companyInfoHeader = document.querySelector('.company-info .section-header h2');
             if (companyInfoHeader) companyInfoHeader.textContent = '청년부 소개';
