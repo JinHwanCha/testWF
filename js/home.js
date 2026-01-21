@@ -127,7 +127,9 @@ function renderRecentWork() {
              data-category="${item.category}"
              data-date="${item.date}"
              data-description="${item.description}">
-            <div class="work-image"></div>
+            <div class="work-image">
+                ${item.img ? `<img src="${item.img}" alt="${item.title}">` : ''}
+            </div>
             <div class="work-info">
                 <h3>${item.title}</h3>
                 <p>${item.date}</p>

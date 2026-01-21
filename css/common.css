@@ -397,6 +397,7 @@ body.witness-theme .page-header {
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
+    border: 2px solid white;
 }
 
 .newsletter-form button:hover {

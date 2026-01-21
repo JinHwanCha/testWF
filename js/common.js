@@ -33,9 +33,14 @@ const GROUP_CONFIG = {
         },
         footer: {
             title: 'Witness',
-            description: '내수동교회 대학부 - 세상의 빛과 소금이 되는',
+            description: '내수동교회 대학부 - 땅 끝까지 이르러 내 증인이 되리라',
             copyright: '© 2026 Witness 내수동교회 대학부. All Rights Reserved.',
-            followUs: '소통채널'
+            followUs: '소통채널',
+            social: {
+                instagram: 'https://www.instagram.com/witnessofchrist/',
+                youtube: 'https://youtube.com/@naesoo_witness?si=Wtpkn_RkcNlRV-rk',
+                kakao: 'https://pf.kakao.com/_qZZbxb'
+            }
         },
         contact: {
             description: '내수동교회 대학부 Witness가 여러분을 환영합니다'
@@ -75,7 +80,12 @@ const GROUP_CONFIG = {
             title: 'Fishermen',
             description: '내수동교회 청년부 - 사람을 낚는 어부가 되리라',
             copyright: '© 2026 Fishermen 내수동교회 청년부. All Rights Reserved.',
-            followUs: 'Follow Us'
+            followUs: 'Follow Us',
+            social: {
+                instagram: 'https://www.instagram.com/naesoofishermen/',
+                youtube: 'https://youtube.com/@naesoofishermen?si=ok791-vDT4c4XJIC',
+                kakao: 'https://pf.kakao.com/_xibZxhC'
+            }
         },
         contact: {
             description: '내수동교회 청년부 Fishermen이 여러분을 환영합니다'
@@ -205,6 +215,21 @@ function initGroupToggle() {
             el => el.textContent === (isWitness ? 'Follow Us' : '소통채널'),
             config.footer.followUs
         );
+        
+        // Update social links
+        if (config.footer.social) {
+            const socialLinks = document.querySelectorAll('.social-links a');
+            socialLinks.forEach(link => {
+                const text = link.textContent.trim();
+                if (text === 'Instagram' && config.footer.social.instagram) {
+                    link.href = config.footer.social.instagram;
+                } else if (text === 'YouTube' && config.footer.social.youtube) {
+                    link.href = config.footer.social.youtube;
+                } else if (text === 'KakaoTalk' && config.footer.social.kakao) {
+                    link.href = config.footer.social.kakao;
+                }
+            });
+        }
         
         // Contact Section
         DOMUpdater.updateText('.contact-content h2', '함께하고 싶으신가요?');
