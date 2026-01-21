@@ -1,0 +1,132 @@
+/* ===========================
+   Work Page Styles (work.html)
+   작품 페이지 전용 스타일
+   =========================== */
+
+/* ===========================
+   Work Filter Section
+   =========================== */
+.work-filter {
+    padding: 40px 0;
+    background: var(--light-gray);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* ===========================
+   Work Gallery Section
+   =========================== */
+.work-gallery {
+    padding: 80px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gallery-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: var(--transition);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.1);
+}
+
+.gallery-content {
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.category {
+    display: inline-block;
+    padding: 5px 15px;
+    background: var(--accent-color);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.gallery-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.view-project {
+    display: inline-block;
+    margin-top: 15px;
+    color: white;
+    font-weight: 600;
+}
+
+/* ===========================
+   Awards Section
+   =========================== */
+.awards-section {
+    background: var(--light-gray);
+    padding: 80px 0;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.award-item {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.award-item h3 {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+@media (max-width: 968px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
