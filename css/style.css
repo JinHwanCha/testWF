@@ -309,12 +309,12 @@ blockquote {
     background: white;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
 }
 
 .info-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
 }
 
 .info-icon {
@@ -351,7 +351,6 @@ blockquote {
     background: white;
     padding: 40px;
     border-radius: 10px;
-    transition: var(--transition);
     position: relative;
     overflow: hidden;
 }
@@ -976,7 +975,6 @@ blockquote {
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     text-align: center;
-    transition: var(--transition);
 }
 
 .department-card:hover {
@@ -1127,7 +1125,6 @@ blockquote {
 .scroll-reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.6s ease;
 }
 
 .scroll-reveal.active {
