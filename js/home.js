@@ -83,3 +83,133 @@ cards.forEach(card => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
     });
 });
+
+// ===========================
+// Recent Work Section
+// ===========================
+function renderRecentWork() {
+    const recentWorkGrid = document.getElementById('recentWorkGrid');
+    if (!recentWorkGrid) {
+        console.log('recentWorkGrid not found!');
+        return;
+    }
+    
+    // Category display names (use from work.js if available)
+    const categoryNames = {
+        worship: '예배',
+        event: '행사',
+        mission: '선교',
+        service: '봉사'
+    };
+    
+    // Get current group
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentGroup = urlParams.get('group') || 
+                        (document.body.classList.contains('witness-theme') ? 'witness' : 'fishermen');
+    
+    console.log('Current group:', currentGroup);
+    
+    // Get work data from work.js if available
+    const workData = window.workData || [];
+    console.log('workData loaded:', workData.length, 'items');
+    
+    // Filter by current group and get latest 3 items
+    const recentItems = workData
+        .filter(item => item.group === currentGroup)
+        .slice(0, 3);
+    
+    console.log('Recent items to display:', recentItems.length);
+    
+    // Render items
+    recentWorkGrid.innerHTML = recentItems.map(item => `
+        <div class="work-item" 
+             data-title="${item.title}"
+             data-category="${item.category}"
+             data-date="${item.date}"
+             data-description="${item.description}">
+            <div class="work-image"></div>
+            <div class="work-info">
+                <h3>${item.title}</h3>
+                <p>${item.date}</p>
+            </div>
+        </div>
+    `).join('');
+    
+    // Attach click event to work items
+    attachWorkItemListeners(categoryNames);
+}
+
+function attachWorkItemListeners(categoryNames) {
+    const workItems = document.querySelectorAll('#recentWorkGrid .work-item');
+    const modal = document.getElementById('projectModal');
+    
+    if (!modal) return;
+    
+    const modalTitle = modal.querySelector('#modalTitle');
+    const modalCategory = modal.querySelector('#modalCategory');
+    const modalDate = modal.querySelector('#modalDate');
+    const modalDescription = modal.querySelector('#modalDescription');
+    const closeModal = modal.querySelector('.close-modal');
+    
+    // Close modal function
+    function closeModalFunc() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+    
+    // Close button
+    if (closeModal) {
+        closeModal.addEventListener('click', closeModalFunc);
+    }
+    
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModalFunc();
+        }
+    });
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeModalFunc();
+        }
+    });
+    
+    workItems.forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+            const title = item.getAttribute('data-title');
+            const category = item.getAttribute('data-category');
+            const date = item.getAttribute('data-date');
+            const description = item.getAttribute('data-description');
+            
+            if (modalTitle) modalTitle.textContent = title;
+            if (modalCategory) modalCategory.textContent = categoryNames[category] || category;
+            if (modalDate) modalDate.textContent = date;
+            if (modalDescription) modalDescription.textContent = description;
+            
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        });
+    });
+}
+
+// Initialize recent work on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Delay rendering to ensure work.js is fully loaded
+    setTimeout(() => {
+        console.log('Starting renderRecentWork...');
+        renderRecentWork();
+    }, 100);
+});
+
+// Listen for group change events from common.js toggle
+document.addEventListener('groupChanged', (e) => {
+    console.log('Group changed to:', e.detail.group);
+    renderRecentWork();
+});

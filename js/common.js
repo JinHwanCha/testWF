@@ -4,6 +4,117 @@
 // ===========================
 
 // ===========================
+// Group Configuration Data
+// ===========================
+const GROUP_CONFIG = {
+    witness: {
+        theme: 'witness-theme',
+        logo: 'WITNESS',
+        hero: {
+            image: `<img src="./images/witness.png" alt="Witness Logo" style="width: 200px; margin:0 auto 20px; border-radius: 100%;">`,
+            lines: ['성령의 권능으로', '세상의 증인이 되는', 'Witness'],
+            subtitle: '내수동교회 대학부와 함께 믿음의 여정을 시작하세요'
+        },
+        ceo: {
+            header: '담당사역자 메시지 메시지',
+            quote: '"오직 성령이 너희에게 임하시면 너희가 권능을 받고... 땅 끝까지 이르러 내 증인이 되리라" (사도행전 1:8)',
+            paragraphs: [
+                'Witness는 사도행전 1장 8절 말씀처럼, 성령의 권능을 받아 이 땅에서 그리스도의 증인으로 살아가고자 하는 대학생들의 공동체입니다.',
+                '우리는 함께 예배하고, 말씀을 나누며, 서로 사랑하고 격려합니다. 대학생으로서 캠퍼스와 사회 속에서 복음을 증거하며, 각자의 달란트를 발견하고 개발하여 하나님 나라를 위해 사용합니다.',
+                '내수동교회 대학부 Witness와 함께 믿음의 여정을 시작하시길 초대합니다. 주님 안에서 함께 성장하고, 서로를 세우며, 땅 끝까지 복음을 전하는 대학부 공동체가 되기를 소망합니다.'
+            ],
+            blockquote: '"땅 끝까지 이르러 내 증인이 되리라"',
+            signature: '내수동교회 대학부 목사'
+        },
+        sections: {
+            companyInfo: '대학부 소개',
+            businessAreas: '대학부 사역',
+            memberTitle: '대학부원'
+        },
+        footer: {
+            title: 'Witness',
+            description: '내수동교회 대학부 - 세상의 빛과 소금이 되는',
+            copyright: '© 2026 Witness 내수동교회 대학부. All Rights Reserved.',
+            followUs: '소통채널'
+        },
+        contact: {
+            description: '내수동교회 대학부 Witness가 여러분을 환영합니다'
+        },
+        stats: {
+            year: '2015',
+            members: '38',
+            groups: '5',
+            events: '10'
+        }
+    },
+    fishermen: {
+        theme: '',
+        logo: 'FISHERMEN',
+        hero: {
+            image: `<img src="./images/fishermen.png" alt="Fishermen Logo" style="filter: brightness(0) invert(1); width: 200px; margin:0 auto 20px;">`,
+            lines: ['사람을 낚는', '어부가 되리라', 'Fishermen'],
+            subtitle: '내수동교회 청년부와 함께 믿음의 여정을 시작하세요'
+        },
+        ceo: {
+            header: '담당사역자 메시지 메시지',
+            quote: '"나를 따라오라 내가 너희를 사람을 낚는 어부가 되게 하리라" (마태복음 4:19)',
+            paragraphs: [
+                'Fishermen은 예수님의 이 말씀처럼, 주님의 부르심에 응답하여 세상 속에서 빛과 소금의 역할을 감당하고자 하는 청년들의 공동체입니다.',
+                '우리는 함께 예배하고, 말씀을 나누며, 서로 사랑하고 격려합니다. 각자의 달란트를 발견하고 개발하여 하나님 나라를 위해 사용하며, 이 시대의 청년으로서 복음을 전하는 삶을 살아갑니다.',
+                '내수동교회 청년부 Fishermen과 함께 믿음의 여정을 시작하시길 초대합니다. 주님 안에서 함께 성장하고, 서로를 세우며, 세상을 변화시키는 청년 공동체가 되기를 소망합니다.'
+            ],
+            blockquote: '"사람을 낚는 어부가 되리라"',
+            signature: '내수동교회 청년부 목사'
+        },
+        sections: {
+            companyInfo: '청년부 소개',
+            businessAreas: '청년부 사역',
+            memberTitle: '청년부원'
+        },
+        footer: {
+            title: 'Fishermen',
+            description: '내수동교회 청년부 - 사람을 낚는 어부가 되리라',
+            copyright: '© 2026 Fishermen 내수동교회 청년부. All Rights Reserved.',
+            followUs: 'Follow Us'
+        },
+        contact: {
+            description: '내수동교회 청년부 Fishermen이 여러분을 환영합니다'
+        },
+        stats: {
+            year: '2010',
+            members: '45',
+            groups: '6',
+            events: '12'
+        }
+    }
+};
+
+// ===========================
+// DOM Update Utilities
+// ===========================
+const DOMUpdater = {
+    updateText(selector, text) {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = text;
+    },
+    
+    updateHTML(selector, html) {
+        const el = document.querySelector(selector);
+        if (el) el.innerHTML = html;
+    },
+    
+    updateAll(selector, callback) {
+        document.querySelectorAll(selector).forEach(callback);
+    },
+    
+    updateByCondition(selector, condition, text) {
+        this.updateAll(selector, el => {
+            if (condition(el)) el.textContent = text;
+        });
+    }
+};
+
+// ===========================
 // Group Toggle (Witness / Fishermen)
 // ===========================
 function initGroupToggle() {
@@ -15,276 +126,145 @@ function initGroupToggle() {
     const fishermenLabel = document.querySelector('.fishermen-label');
     
     function updateTheme(selectedGroup) {
-        if (selectedGroup === 'witness') {
-            document.body.classList.add('witness-theme');
-            toggle.classList.remove('active');
-            if (logo) logo.textContent = 'WITNESS';
-            if (witnessLabel) witnessLabel.classList.remove('inactive');
-            if (fishermenLabel) fishermenLabel.classList.add('inactive');
-            
-            // Update hero title for witness
-            const heroLines = document.querySelectorAll('.hero-title .line');
-            if (heroLines.length >= 4) {
-                heroLines[0].innerHTML = `<img src="./images/witness.png" alt="Witness Logo" style="width: 200px; margin:0 auto 20px; border-radius: 100%;">`;
-                heroLines[1].textContent = '성령의 권능으로';
-                heroLines[2].textContent = '세상의 증인이 되는';
-                heroLines[3].textContent = 'Witness';
-            }
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            if (heroSubtitle) {
-                heroSubtitle.textContent = '내수동교회 대학부와 함께 믿음의 여정을 시작하세요';
-            }
-            
-            // Update section headers
-            const ceoHeader = document.querySelector('.ceo-message .section-header h2');
-            if (ceoHeader) ceoHeader.textContent = '담당사역자 메시지 메시지';
-                        // Update CEO message content for witness (대학부)
-            const ceoLargeText = document.querySelector('.ceo-text .large-text');
-            if (ceoLargeText) {
-                ceoLargeText.textContent = '"오직 성령이 너희에게 임하시면 너희가 권능을 받고... 땅 끝까지 이르러 내 증인이 되리라" (사도행전 1:8)';
-            }
-            
-            const ceoParagraphs = document.querySelectorAll('.ceo-text p:not(.large-text)');
-            if (ceoParagraphs.length >= 4) {
-                ceoParagraphs[0].textContent = 'Witness는 사도행전 1장 8절 말씀처럼, 성령의 권능을 받아 이 땅에서 그리스도의 증인으로 살아가고자 하는 대학생들의 공동체입니다.';
-                ceoParagraphs[1].textContent = '우리는 함께 예배하고, 말씀을 나누며, 서로 사랑하고 격려합니다. 대학생으로서 캠퍼스와 사회 속에서 복음을 증거하며, 각자의 달란트를 발견하고 개발하여 하나님 나라를 위해 사용합니다.';
-                ceoParagraphs[2].textContent = '내수동교회 대학부 Witness와 함께 믿음의 여정을 시작하시길 초대합니다. 주님 안에서 함께 성장하고, 서로를 세우며, 땅 끝까지 복음을 전하는 대학부 공동체가 되기를 소망합니다.';
-            }
-            
-            const ceoQuote = document.querySelector('.ceo-text blockquote');
-            if (ceoQuote) {
-                ceoQuote.textContent = '"땅 끝까지 이르러 내 증인이 되리라"';
-            }
-            
-            const ceoSignature = document.querySelector('.ceo-signature strong');
-            if (ceoSignature) {
-                ceoSignature.textContent = '내수동교회 대학부 목사';
-            }
-                        const companyInfoHeader = document.querySelector('.company-info .section-header h2');
-            if (companyInfoHeader) companyInfoHeader.textContent = '대학부 소개';
-            
-            // Update info-card titles
-            const infoCards = document.querySelectorAll('.info-card h3');
-            infoCards.forEach(card => {
-                if (card.textContent === '청년부원') {
-                    card.textContent = '대학부원';
-                }
+        const config = GROUP_CONFIG[selectedGroup];
+        const isWitness = selectedGroup === 'witness';
+        
+        // Theme & Logo
+        document.body.classList.toggle('witness-theme', isWitness);
+        toggle?.classList.toggle('active', !isWitness);
+        if (logo) logo.textContent = config.logo;
+        witnessLabel?.classList.toggle('inactive', !isWitness);
+        fishermenLabel?.classList.toggle('inactive', isWitness);
+        
+        // Hero Section
+        const heroLines = document.querySelectorAll('.hero-title .line');
+        if (heroLines.length >= 4) {
+            heroLines[0].innerHTML = config.hero.image;
+            config.hero.lines.forEach((text, i) => {
+                if (heroLines[i + 1]) heroLines[i + 1].textContent = text;
             });
-            
-            const businessAreasHeader = document.querySelector('.business-areas .section-header h2');
-            if (businessAreasHeader) businessAreasHeader.textContent = '대학부 사역';
-            
-            const businessAreasSubtitle = document.querySelector('.business-areas .section-header p');
-            if (businessAreasSubtitle) businessAreasSubtitle.textContent = '다양한 사역을 통해 함께 성장합니다';
-            
-            const featuredWorkHeader = document.querySelector('.featured-work .section-header h2');
-            if (featuredWorkHeader) featuredWorkHeader.textContent = '최근 활동';
-            
-            // Update navigation links
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                if (href === '/people/') link.textContent = '대학부원';
-            });
-            
-            // Update footer
-            const footerTitle = document.querySelector('.footer-col h4');
-            if (footerTitle && footerTitle.textContent === 'Fishermen') {
-                footerTitle.textContent = 'Witness';
-            }
-            const footerDesc = document.querySelector('.footer-col p');
-            if (footerDesc && footerDesc.textContent.includes('청년부')) {
-                footerDesc.textContent = '내수동교회 대학부 - 세상의 빛과 소금이 되는';
-            }
-            
-            const footerLinks = document.querySelectorAll('.footer-col ul li a');
-            footerLinks.forEach(link => {
-                if (link.textContent === '청년부원') link.textContent = '대학부원';
-            });
-            
-            const footerBottom = document.querySelector('.footer-bottom p');
-            if (footerBottom && footerBottom.textContent.includes('Fishermen')) {
-                footerBottom.textContent = '© 2026 Witness 내수동교회 대학부. All Rights Reserved.';
-            }
-            
-            // Update Follow Us section
-            const followUsTitle = document.querySelectorAll('.footer-col h4');
-            followUsTitle.forEach(title => {
-                if (title.textContent === 'Follow Us') {
-                    title.textContent = '소통채널';
-                }
-            });
-            
-            // Update contact section
-            const contactTitle = document.querySelector('.contact-content h2');
-            if (contactTitle && contactTitle.textContent.includes('함께하고')) {
-                contactTitle.textContent = '함께하고 싶으신가요?';
-            }
-            const contactDesc = document.querySelector('.contact-content p');
-            if (contactDesc && contactDesc.textContent.includes('청년부')) {
-                contactDesc.textContent = '내수동교회 대학부 Witness가 여러분을 환영합니다';
-            }
-            
-            // Update statistics
-            const statYear = document.querySelector('[data-stat="year"]');
-            if (statYear) statYear.textContent = '2015';
-            
-            const statMembers = document.querySelector('[data-stat="members"]');
-            if (statMembers) statMembers.textContent = '38';
-            
-            const statMemberTitle = document.querySelector('[data-stat="member-title"]');
-            if (statMemberTitle) statMemberTitle.textContent = '대학부원';
-            
-            const statGroups = document.querySelector('[data-stat="groups"]');
-            if (statGroups) statGroups.textContent = '5';
-            
-            const statEvents = document.querySelector('[data-stat="events"]');
-            if (statEvents) statEvents.textContent = '10';
-            
-            // Filter work gallery items by group
-            filterWorkByGroup('witness');
-            
-            // Filter news items by group
-            filterNewsByGroup('witness');
-            
-            // Filter people by group
-            filterPeopleByGroup('witness');
-            
-        } else {
-            document.body.classList.remove('witness-theme');
-            toggle.classList.add('active');
-            if (logo) logo.textContent = 'FISHERMEN';
-            if (witnessLabel) witnessLabel.classList.add('inactive');
-            if (fishermenLabel) fishermenLabel.classList.remove('inactive');
-            
-            // Update hero title for fishermen
-            const heroLines = document.querySelectorAll('.hero-title .line');
-            if (heroLines.length >= 4) {
-                heroLines[0].innerHTML = `<img src="./images/fishermen.png" alt="Fishermen Logo" style="filter: brightness(0) invert(1); width: 200px; margin:0 auto 20px;">`;
-                heroLines[1].textContent = '사람을 낚는';
-                heroLines[2].textContent = '어부가 되리라';
-                heroLines[3].textContent = 'Fishermen';
-            }
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            if (heroSubtitle) {
-                heroSubtitle.textContent = '내수동교회 청년부와 함께 믿음의 여정을 시작하세요';
-            }
-            
-            // Update section headers
-            const ceoHeader = document.querySelector('.ceo-message .section-header h2');
-            if (ceoHeader) ceoHeader.textContent = '담당사역자 메시지 메시지';
-                        // Update CEO message content for fishermen (청년부)
-            const ceoLargeText = document.querySelector('.ceo-text .large-text');
-            if (ceoLargeText) {
-                ceoLargeText.textContent = '"나를 따라오라 내가 너희를 사람을 낚는 어부가 되게 하리라" (마태복음 4:19)';
-            }
-            
-            const ceoParagraphs = document.querySelectorAll('.ceo-text p:not(.large-text)');
-            if (ceoParagraphs.length >= 4) {
-                ceoParagraphs[0].textContent = 'Fishermen은 예수님의 이 말씀처럼, 주님의 부르심에 응답하여 세상 속에서 빛과 소금의 역할을 감당하고자 하는 청년들의 공동체입니다.';
-                ceoParagraphs[1].textContent = '우리는 함께 예배하고, 말씀을 나누며, 서로 사랑하고 격려합니다. 각자의 달란트를 발견하고 개발하여 하나님 나라를 위해 사용하며, 이 시대의 청년으로서 복음을 전하는 삶을 살아갑니다.';
-                ceoParagraphs[2].textContent = '내수동교회 청년부 Fishermen과 함께 믿음의 여정을 시작하시길 초대합니다. 주님 안에서 함께 성장하고, 서로를 세우며, 세상을 변화시키는 청년 공동체가 되기를 소망합니다.';
-            }
-            
-            const ceoQuote = document.querySelector('.ceo-text blockquote');
-            if (ceoQuote) {
-                ceoQuote.textContent = '"사람을 낚는 어부가 되리라"';
-            }
-            
-            const ceoSignature = document.querySelector('.ceo-signature strong');
-            if (ceoSignature) {
-                ceoSignature.textContent = '내수동교회 청년부 목사';
-            }
-                        const companyInfoHeader = document.querySelector('.company-info .section-header h2');
-            if (companyInfoHeader) companyInfoHeader.textContent = '청년부 소개';
-            
-            // Update info-card titles back to fishermen
-            const infoCards = document.querySelectorAll('.info-card h3');
-            infoCards.forEach(card => {
-                if (card.textContent === '대학부원') {
-                    card.textContent = '청년부원';
-                }
-            });
-            
-            const businessAreasHeader = document.querySelector('.business-areas .section-header h2');
-            if (businessAreasHeader) businessAreasHeader.textContent = '청년부 사역';
-            
-            const businessAreasSubtitle = document.querySelector('.business-areas .section-header p');
-            if (businessAreasSubtitle) businessAreasSubtitle.textContent = '다양한 사역을 통해 함께 성장합니다';
-            
-            const featuredWorkHeader = document.querySelector('.featured-work .section-header h2');
-            if (featuredWorkHeader) featuredWorkHeader.textContent = '최근 활동';
-            
-            // Update navigation links
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                if (href === '/people/') link.textContent = '청년부원';
-            });
-            
-            // Update footer
-            const footerTitle = document.querySelector('.footer-col h4');
-            if (footerTitle && footerTitle.textContent === 'Witness') {
-                footerTitle.textContent = 'Fishermen';
-            }
-            const footerDesc = document.querySelector('.footer-col p');
-            if (footerDesc && footerDesc.textContent.includes('대학부')) {
-                footerDesc.textContent = '내수동교회 청년부 - 사람을 낚는 어부가 되리라';
-            }
-            
-            const footerLinks = document.querySelectorAll('.footer-col ul li a');
-            footerLinks.forEach(link => {
-                if (link.textContent === '대학부원') link.textContent = '청년부원';
-            });
-            
-            const footerBottom = document.querySelector('.footer-bottom p');
-            if (footerBottom && footerBottom.textContent.includes('Witness')) {
-                footerBottom.textContent = '© 2026 Fishermen 내수동교회 청년부. All Rights Reserved.';
-            }
-            
-            // Update Follow Us section
-            const followUsTitle = document.querySelectorAll('.footer-col h4');
-            followUsTitle.forEach(title => {
-                if (title.textContent === '소통채널') {
-                    title.textContent = 'Follow Us';
-                }
-            });
-            
-            // Update contact section
-            const contactTitle = document.querySelector('.contact-content h2');
-            if (contactTitle && contactTitle.textContent.includes('함께하고')) {
-                contactTitle.textContent = '함께하고 싶으신가요?';
-            }
-            const contactDesc = document.querySelector('.contact-content p');
-            if (contactDesc && contactDesc.textContent.includes('대학부')) {
-                contactDesc.textContent = '내수동교회 청년부 Fishermen이 여러분을 환영합니다';
-            }
-            
-            // Update statistics
-            const statYear = document.querySelector('[data-stat="year"]');
-            if (statYear) statYear.textContent = '2010';
-            
-            const statMembers = document.querySelector('[data-stat="members"]');
-            if (statMembers) statMembers.textContent = '45';
-            
-            const statMemberTitle = document.querySelector('[data-stat="member-title"]');
-            if (statMemberTitle) statMemberTitle.textContent = '청년부원';
-            
-            const statGroups = document.querySelector('[data-stat="groups"]');
-            if (statGroups) statGroups.textContent = '6';
-            
-            const statEvents = document.querySelector('[data-stat="events"]');
-            if (statEvents) statEvents.textContent = '12';
-            
-            // Filter work gallery items by group
-            filterWorkByGroup('fishermen');
-            
-            // Filter news items by group
-            filterNewsByGroup('fishermen');
-            
-            // Filter people by group
-            filterPeopleByGroup('fishermen');
         }
+        DOMUpdater.updateText('.hero-subtitle', config.hero.subtitle);
+        
+        // CEO/Leader Section
+        DOMUpdater.updateText('.ceo-message .section-header h2', config.ceo.header);
+        DOMUpdater.updateText('.ceo-text .large-text', config.ceo.quote);
+        
+        const ceoParagraphs = document.querySelectorAll('.ceo-text p:not(.large-text)');
+        config.ceo.paragraphs.forEach((text, i) => {
+            if (ceoParagraphs[i]) ceoParagraphs[i].textContent = text;
+        });
+        
+        DOMUpdater.updateText('.ceo-text blockquote', config.ceo.blockquote);
+        DOMUpdater.updateText('.ceo-signature strong', config.ceo.signature);
+        
+        // Section Headers
+        DOMUpdater.updateText('.company-info .section-header h2', config.sections.companyInfo);
+        DOMUpdater.updateText('.business-areas .section-header h2', config.sections.businessAreas);
+        DOMUpdater.updateText('.business-areas .section-header p', '다양한 사역을 통해 함께 성장합니다');
+        DOMUpdater.updateText('.featured-work .section-header h2', '최근 활동');
+        
+        // Info Cards & Navigation
+        const oldMemberTitle = isWitness ? '청년부원' : '대학부원';
+        const newMemberTitle = config.sections.memberTitle;
+        
+        DOMUpdater.updateByCondition('.info-card h3', 
+            el => el.textContent === oldMemberTitle, 
+            newMemberTitle
+        );
+        
+        DOMUpdater.updateAll('.nav-menu a', link => {
+            if (link.getAttribute('href') === '/people/') {
+                link.textContent = newMemberTitle;
+            }
+        });
+        
+        // Footer
+        const footerTitle = document.querySelector('.footer-col h4');
+        const oldFooterTitle = isWitness ? 'Fishermen' : 'Witness';
+        if (footerTitle && footerTitle.textContent === oldFooterTitle) {
+            footerTitle.textContent = config.footer.title;
+        }
+        
+        const footerDesc = document.querySelector('.footer-col p');
+        if (footerDesc && footerDesc.textContent.includes(isWitness ? '청년부' : '대학부')) {
+            footerDesc.textContent = config.footer.description;
+        }
+        
+        DOMUpdater.updateByCondition('.footer-col ul li a',
+            el => el.textContent === oldMemberTitle,
+            newMemberTitle
+        );
+        
+        const footerBottom = document.querySelector('.footer-bottom p');
+        if (footerBottom && footerBottom.textContent.includes(oldFooterTitle)) {
+            footerBottom.textContent = config.footer.copyright;
+        }
+        
+        DOMUpdater.updateByCondition('.footer-col h4',
+            el => el.textContent === (isWitness ? 'Follow Us' : '소통채널'),
+            config.footer.followUs
+        );
+        
+        // Contact Section
+        DOMUpdater.updateText('.contact-content h2', '함께하고 싶으신가요?');
+        const contactDesc = document.querySelector('.contact-content p');
+        if (contactDesc && contactDesc.textContent.includes(isWitness ? '청년부' : '대학부')) {
+            contactDesc.textContent = config.contact.description;
+        }
+        
+        // Statistics
+        DOMUpdater.updateText('[data-stat="year"]', config.stats.year);
+        DOMUpdater.updateText('[data-stat="members"]', config.stats.members);
+        DOMUpdater.updateText('[data-stat="member-title"]', newMemberTitle);
+        DOMUpdater.updateText('[data-stat="groups"]', config.stats.groups);
+        DOMUpdater.updateText('[data-stat="events"]', config.stats.events);
+        
+        // Filter content by group
+        filterContentByGroup(selectedGroup);
+        
+        // Dispatch custom event for other scripts to listen
+        document.dispatchEvent(new CustomEvent('groupChanged', { detail: { group: selectedGroup } }));
+    }
+    
+    // Combined filter function
+    function filterContentByGroup(group) {
+        filterWorkByGroup(group);
+        filterNewsByGroup(group);
+        filterPeopleByGroup(group);
+    }
+    
+    // ===========================
+    // Generic Filter Function
+    // ===========================
+    function filterByGroup(selectors, group, options = {}) {
+        const {
+            displayType = 'block',
+            withTransform = false,
+            delay = 50,
+            transitionDuration = 300
+        } = options;
+        
+        selectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(element => {
+                const itemGroup = element.getAttribute('data-group');
+                const matches = itemGroup === group;
+                
+                if (matches) {
+                    element.style.display = displayType;
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        if (withTransform) element.style.transform = 'translateY(0)';
+                    }, delay);
+                } else {
+                    element.style.opacity = '0';
+                    if (withTransform) element.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        element.style.display = 'none';
+                    }, transitionDuration);
+                }
+            });
+        });
     }
     
     // Filter work gallery by group
@@ -297,19 +277,12 @@ function initGroupToggle() {
         galleryItems.forEach(item => {
             const itemGroup = item.getAttribute('data-group');
             const itemCategory = item.getAttribute('data-category');
-            
-            // Check both group and current filter
             const matchesGroup = itemGroup === group;
             const matchesFilter = currentFilter === 'all' || itemCategory === currentFilter;
             
-            if (matchesGroup && matchesFilter) {
-                item.style.display = 'block';
-                item.style.opacity = '1';
-                item.style.transform = 'scale(1)';
-            } else {
-                item.style.display = 'none';
-                item.style.opacity = '0';
-            }
+            item.style.display = matchesGroup && matchesFilter ? 'block' : 'none';
+            item.style.opacity = matchesGroup && matchesFilter ? '1' : '0';
+            item.style.transform = matchesGroup && matchesFilter ? 'scale(1)' : '';
         });
         
         // Reset filter to "all" when switching groups
@@ -322,6 +295,14 @@ function initGroupToggle() {
     
     // Filter news by group
     function filterNewsByGroup(group) {
+        // Filter featured articles
+        const featuredArticles = document.querySelectorAll('.featured-article[data-group]');
+        featuredArticles.forEach(article => {
+            const itemGroup = article.getAttribute('data-group');
+            article.style.display = itemGroup === group ? 'grid' : 'none';
+        });
+        
+        // Filter news cards
         const newsCards = document.querySelectorAll('.news-card[data-group]');
         const filterButtons = document.querySelectorAll('.filter-btn');
         const activeFilter = document.querySelector('.filter-btn.active');
@@ -330,19 +311,12 @@ function initGroupToggle() {
         newsCards.forEach(card => {
             const itemGroup = card.getAttribute('data-group');
             const itemCategory = card.getAttribute('data-category');
-            
-            // Check both group and current filter
             const matchesGroup = itemGroup === group;
             const matchesFilter = currentFilter === 'all' || itemCategory === currentFilter;
             
-            if (matchesGroup && matchesFilter) {
-                card.style.display = 'block';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            } else {
-                card.style.display = 'none';
-                card.style.opacity = '0';
-            }
+            card.style.display = matchesGroup && matchesFilter ? 'block' : 'none';
+            card.style.opacity = matchesGroup && matchesFilter ? '1' : '0';
+            card.style.transform = matchesGroup && matchesFilter ? 'translateY(0)' : '';
         });
         
         // Reset filter to "all" when switching groups
@@ -354,102 +328,20 @@ function initGroupToggle() {
         
         // Trigger pagination update if on news page
         if (typeof showPage === 'function') {
-            currentPage = 1; // Reset to first page
+            currentPage = 1;
             showPage();
         }
     }
     
     // Filter people by group
     function filterPeopleByGroup(group) {
-        const headerContents = document.querySelectorAll('.header-content[data-group]');
-        const cultureContents = document.querySelectorAll('.culture-content[data-group]');
-        const teamMembers = document.querySelectorAll('.team-member[data-group]');
-        const departmentCards = document.querySelectorAll('.department-card[data-group]');
-        const careersTexts = document.querySelectorAll('.careers-text[data-group]');
-        
-        headerContents.forEach(content => {
-            const itemGroup = content.getAttribute('data-group');
-            
-            if (itemGroup === group) {
-                content.style.display = 'block';
-                setTimeout(() => {
-                    content.style.opacity = '1';
-                }, 50);
-            } else {
-                content.style.opacity = '0';
-                setTimeout(() => {
-                    content.style.display = 'none';
-                }, 300);
-            }
+        filterByGroup(['.header-content[data-group]'], group, { displayType: 'block' });
+        filterByGroup(['.culture-content[data-group]'], group, { displayType: 'grid' });
+        filterByGroup(['.team-member[data-group]', '.department-card[data-group]'], group, { 
+            displayType: 'block', 
+            withTransform: true 
         });
-        
-        cultureContents.forEach(content => {
-            const itemGroup = content.getAttribute('data-group');
-            
-            if (itemGroup === group) {
-                content.style.display = 'grid';
-                setTimeout(() => {
-                    content.style.opacity = '1';
-                }, 50);
-            } else {
-                content.style.opacity = '0';
-                setTimeout(() => {
-                    content.style.display = 'none';
-                }, 300);
-            }
-        });
-        
-        teamMembers.forEach(member => {
-            const itemGroup = member.getAttribute('data-group');
-            
-            if (itemGroup === group) {
-                member.style.display = 'block';
-                setTimeout(() => {
-                    member.style.opacity = '1';
-                    member.style.transform = 'translateY(0)';
-                }, 50);
-            } else {
-                member.style.opacity = '0';
-                member.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    member.style.display = 'none';
-                }, 300);
-            }
-        });
-        
-        departmentCards.forEach(card => {
-            const itemGroup = card.getAttribute('data-group');
-            
-            if (itemGroup === group) {
-                card.style.display = 'block';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 50);
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
-            }
-        });
-        
-        careersTexts.forEach(text => {
-            const itemGroup = text.getAttribute('data-group');
-            
-            if (itemGroup === group) {
-                text.style.display = 'block';
-                setTimeout(() => {
-                    text.style.opacity = '1';
-                }, 50);
-            } else {
-                text.style.opacity = '0';
-                setTimeout(() => {
-                    text.style.display = 'none';
-                }, 300);
-            }
-        });
+        filterByGroup(['.careers-text[data-group]'], group, { displayType: 'block' });
     }
     
     // Initialize theme
@@ -719,6 +611,103 @@ backToTop.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+// ===========================
+// Generic Modal System
+// ===========================
+function initModal(config) {
+    const {
+        modalId,           // 모달 요소 ID
+        triggerSelector,   // 트리거 버튼 선택자 (.view-project, .read-more 등)
+        parentSelector,    // 데이터를 가져올 부모 요소 선택자
+        titleSelector = 'h3',     // 제목 선택자 (기본값: h3)
+        categorySelector,  // 카테고리 선택자
+        dateSelector,      // 날짜 선택자
+        descriptionAttr = 'data-description'  // 설명 속성명
+    } = config;
+
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    const modalTitle = modal.querySelector('#modalTitle');
+    const modalCategory = modal.querySelector('#modalCategory');
+    const modalDate = modal.querySelector('#modalDate');
+    const modalDescription = modal.querySelector('#modalDescription');
+    const closeModal = modal.querySelector('.close-modal');
+
+    // Open modal function
+    function openModal(triggerBtn) {
+        const parent = triggerBtn.closest(parentSelector);
+        if (!parent) return;
+
+        const title = parent.querySelector(titleSelector)?.textContent || '';
+        const category = categorySelector ? parent.querySelector(categorySelector)?.textContent || '' : '';
+        const date = dateSelector ? parent.querySelector(dateSelector)?.textContent || '' : '';
+        const description = parent.getAttribute(descriptionAttr) || '';
+
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalCategory && category) modalCategory.textContent = category;
+        if (modalDate && date) modalDate.textContent = date;
+        if (modalDescription) modalDescription.textContent = description;
+
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    }
+
+    // Close modal function
+    function closeModalFunc() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+
+    // Attach event listeners
+    function attachListeners() {
+        const triggers = document.querySelectorAll(triggerSelector);
+        
+        triggers.forEach(btn => {
+            // Remove existing listeners to prevent duplicates
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            
+            newBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(newBtn);
+            });
+        });
+    }
+
+    // Initial attachment
+    attachListeners();
+
+    // Close button
+    if (closeModal) {
+        closeModal.addEventListener('click', closeModalFunc);
+    }
+
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModalFunc();
+        }
+    });
+
+    // Close on ESC key
+    const escHandler = (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeModalFunc();
+        }
+    };
+    document.addEventListener('keydown', escHandler);
+
+    // Return attach function for re-initialization
+    return {
+        reattach: attachListeners
+    };
+}
 
 // ===========================
 // Console Message

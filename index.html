@@ -6,6 +6,7 @@
     <title>Fishermen - 내수동교회 청년부</title>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/work.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -201,28 +202,8 @@
                 <h2>최근 활동</h2>
                 <a href="/work/" class="view-all">View All →</a>
             </div>
-            <div class="work-grid">
-                <div class="work-item">
-                    <div class="work-image"></div>
-                    <div class="work-info">
-                        <h3>겨울 수련회</h3>
-                        <p>2026년 1월 | 수련회</p>
-                    </div>
-                </div>
-                <div class="work-item">
-                    <div class="work-image"></div>
-                    <div class="work-info">
-                        <h3>연말 감사예배</h3>
-                        <p>2025년 12월 | 특별예배</p>
-                    </div>
-                </div>
-                <div class="work-item">
-                    <div class="work-image"></div>
-                    <div class="work-info">
-                        <h3>가을 야외예배</h3>
-                        <p>2025년 10월 | 예배</p>
-                    </div>
-                </div>
+            <div class="work-grid" id="recentWorkGrid">
+                <!-- Recent work items will be dynamically rendered by home.js -->
             </div>
         </div>
     </section>
@@ -278,8 +259,25 @@
         </div>
     </footer>
 
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <span class="modal-category" id="modalCategory">예배</span>
+                <h2 class="modal-title" id="modalTitle">프로젝트 제목</h2>
+                <p class="modal-date" id="modalDate">2024년 1월</p>
+            </div>
+            <div class="modal-body">
+                <p id="modalDescription">프로젝트 설명이 여기에 표시됩니다.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Common JavaScript for all pages -->
     <script src="js/common.js"></script>
+    <!-- Work data for recent activities -->
+    <script src="js/work.js"></script>
     <!-- Home page specific JavaScript -->
     <script src="js/home.js"></script>
 </body>

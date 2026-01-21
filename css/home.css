@@ -279,18 +279,26 @@ body.witness-theme .work-image {
 .work-item {
     cursor: pointer;
     transition: var(--transition);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .work-item:hover {
     transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .work-image {
     width: 100%;
     aspect-ratio: 16/9;
     background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 0;
+}
+
+.work-info {
+    padding: 20px;
 }
 
 .work-info h3 {
