@@ -41,8 +41,13 @@
 .gallery-image {
     width: 100%;
     aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     transition: var(--transition);
+}
+
+/* Witness Theme */
+body.witness-theme .gallery-image {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%);
 }
 
 .gallery-overlay {

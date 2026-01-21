@@ -13,12 +13,28 @@ let currentPage = 1;
 let currentFilter = 'all';
 
 // ===========================
+// 현재 그룹 가져오기
+// ===========================
+function getCurrentGroup() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const groupParam = urlParams.get('group');
+    if (groupParam === 'witness' || groupParam === 'fishermen') {
+        return groupParam;
+    }
+    return document.body.classList.contains('witness-theme') ? 'witness' : 'fishermen';
+}
+
+// ===========================
 // 필터링된 카드 가져오기
 // ===========================
 function getFilteredCards() {
+    const currentGroup = getCurrentGroup();
     return Array.from(newsCardsAll).filter(card => {
         const category = card.getAttribute('data-category');
-        return currentFilter === 'all' || category === currentFilter;
+        const group = card.getAttribute('data-group');
+        const matchesGroup = group === currentGroup;
+        const matchesFilter = currentFilter === 'all' || category === currentFilter;
+        return matchesGroup && matchesFilter;
     });
 }
 

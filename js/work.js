@@ -9,6 +9,16 @@
 const filterButtons = document.querySelectorAll('.filter-btn');
 const galleryItems = document.querySelectorAll('.gallery-item');
 
+// Get current group from URL or body class
+function getCurrentGroup() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentGroup = urlParams.get('group');
+    if (!currentGroup) {
+        currentGroup = document.body.classList.contains('witness-theme') ? 'witness' : 'fishermen';
+    }
+    return currentGroup;
+}
+
 if (filterButtons.length > 0 && galleryItems.length > 0) {
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -18,12 +28,18 @@ if (filterButtons.length > 0 && galleryItems.length > 0) {
             button.classList.add('active');
             
             const filter = button.getAttribute('data-filter');
+            const currentGroup = getCurrentGroup();
             
-            // Filter gallery items
+            // Filter gallery items by both category and group
             galleryItems.forEach(item => {
                 const category = item.getAttribute('data-category');
+                const itemGroup = item.getAttribute('data-group');
                 
-                if (filter === 'all' || category === filter) {
+                // Check if item matches both group and filter
+                const matchesGroup = itemGroup === currentGroup;
+                const matchesFilter = filter === 'all' || category === filter;
+                
+                if (matchesGroup && matchesFilter) {
                     item.style.display = 'block';
                     setTimeout(() => {
                         item.style.opacity = '1';

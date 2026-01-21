@@ -13,11 +13,16 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     color: white;
     position: relative;
     overflow: hidden;
     z-index: 1;
+}
+
+/* Witness Theme Hero */
+body.witness-theme .hero {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%);
 }
 
 .hero::before {
@@ -152,8 +157,17 @@ blockquote {
 .ceo-image .image-placeholder {
     width: 100%;
     aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     border-radius: 10px;
+}
+
+/* Witness Theme */
+body.witness-theme .ceo-image .image-placeholder {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%);
+}
+
+body.witness-theme .work-image {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%);
 }
 
 /* ===========================
@@ -274,7 +288,7 @@ blockquote {
 .work-image {
     width: 100%;
     aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -295,6 +309,11 @@ blockquote {
     background: var(--primary-color);
     color: white;
     text-align: center;
+}
+
+/* Witness Theme */
+body.witness-theme .contact {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%);
 }
 
 .contact-content h2 {

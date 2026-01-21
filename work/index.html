@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work - Creative Agency</title>
+    <title>사역 - Fishermen</title>
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/work.css">
 </head>
@@ -12,13 +12,20 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="/">CREATIVE AGENCY</a>
+                <a href="/" class="logo-text">FISHERMEN</a>
+            </div>
+            <div class="group-toggle">
+                <span class="toggle-label witness-label">Witness</span>
+                <div class="toggle-switch" id="groupToggle">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span class="toggle-label fishermen-label">Fishermen</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="/">Home</a></li>
-                <li><a href="/work/" class="active">Work</a></li>
-                <li><a href="/news/">News</a></li>
-                <li><a href="/people/">People</a></li>
+                <li><a href="/work/" class="active">사역</a></li>
+                <li><a href="/news/">소식</a></li>
+                <li><a href="/people/">청년부원</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -32,8 +39,8 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Our Work</h1>
-            <p>창의적인 아이디어와 데이터 기반 전략으로 만들어낸 성공 사례들</p>
+            <h1>사역 활동</h1>
+            <p class="page-subtitle">함께 만들어가는 신앙 공동체의 발자취</p>
         </div>
     </section>
 
@@ -41,11 +48,11 @@
     <section class="work-filter">
         <div class="container">
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="campaign">Campaign</button>
-                <button class="filter-btn" data-filter="digital">Digital</button>
-                <button class="filter-btn" data-filter="branding">Branding</button>
-                <button class="filter-btn" data-filter="experience">Experience</button>
+                <button class="filter-btn active" data-filter="all">전체</button>
+                <button class="filter-btn" data-filter="worship">예배</button>
+                <button class="filter-btn" data-filter="event">행사</button>
+                <button class="filter-btn" data-filter="mission">선교</button>
+                <button class="filter-btn" data-filter="service">봉사</button>
             </div>
         </div>
     </section>
@@ -53,120 +60,209 @@
     <!-- Work Gallery -->
     <section class="work-gallery">
         <div class="container">
-            <div class="gallery-grid">
-                <!-- Work Item 1 -->
-                <div class="gallery-item" data-category="campaign">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Witness 활동 (8개) -->
+                <div class="gallery-item" data-category="worship" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Campaign</span>
-                            <h3>혁신적인 브랜드 캠페인</h3>
-                            <p>글로벌 전자제품 브랜드</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">예배</span>
+                            <h3>주일 대학부 예배</h3>
+                            <p>2025년 1월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 2 -->
-                <div class="gallery-item" data-category="digital">
+                <div class="gallery-item" data-category="event" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Digital</span>
-                            <h3>디지털 트랜스포메이션</h3>
-                            <p>리테일 기업</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">행사</span>
+                            <h3>겨울 수련회</h3>
+                            <p>2025년 1월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 3 -->
-                <div class="gallery-item" data-category="branding">
+                <div class="gallery-item" data-category="worship" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Branding</span>
-                            <h3>브랜드 리뉴얼 프로젝트</h3>
-                            <p>스타트업 기업</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">예배</span>
+                            <h3>연합 찬양 예배</h3>
+                            <p>2024년 12월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 4 -->
-                <div class="gallery-item" data-category="campaign">
+                <div class="gallery-item" data-category="mission" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Campaign</span>
-                            <h3>소셜 임팩트 캠페인</h3>
-                            <p>공익 프로젝트</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">선교</span>
+                            <h3>캠퍼스 전도</h3>
+                            <p>2024년 11월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 5 -->
-                <div class="gallery-item" data-category="experience">
+                <div class="gallery-item" data-category="service" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Experience</span>
-                            <h3>체험형 이벤트 기획</h3>
-                            <p>자동차 브랜드</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">봉사</span>
+                            <h3>지역사회 봉사활동</h3>
+                            <p>2024년 10월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 6 -->
-                <div class="gallery-item" data-category="digital">
+                <div class="gallery-item" data-category="event" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Digital</span>
-                            <h3>E-커머스 플랫폼 구축</h3>
-                            <p>패션 브랜드</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">행사</span>
+                            <h3>가을 야외예배</h3>
+                            <p>2024년 10월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 7 -->
-                <div class="gallery-item" data-category="branding">
+                <div class="gallery-item" data-category="mission" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Branding</span>
-                            <h3>통합 브랜드 아이덴티티</h3>
-                            <p>금융 서비스</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">선교</span>
+                            <h3>해외 단기선교</h3>
+                            <p>2024년 8월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 8 -->
-                <div class="gallery-item" data-category="campaign">
+                <div class="gallery-item" data-category="event" data-group="witness">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Campaign</span>
-                            <h3>런칭 캠페인</h3>
-                            <p>모바일 기기</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">행사</span>
+                            <h3>여름 수양회</h3>
+                            <p>2024년 7월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Work Item 9 -->
-                <div class="gallery-item" data-category="experience">
+                <!-- Fishermen 활동 (9개) -->
+                <div class="gallery-item" data-category="worship" data-group="fishermen">
                     <div class="gallery-image"></div>
                     <div class="gallery-overlay">
                         <div class="gallery-content">
-                            <span class="category">Experience</span>
-                            <h3>팝업스토어 기획 및 운영</h3>
-                            <p>뷰티 브랜드</p>
-                            <a href="#" class="view-project">View Project →</a>
+                            <span class="category">예배</span>
+                            <h3>주일 청년부 예배</h3>
+                            <p>2025년 1월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="event" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">행사</span>
+                            <h3>신년 비전 세미나</h3>
+                            <p>2025년 1월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="worship" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">예배</span>
+                            <h3>연말 감사예배</h3>
+                            <p>2024년 12월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="service" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">봉사</span>
+                            <h3>무료급식 봉사</h3>
+                            <p>2024년 11월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="event" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">행사</span>
+                            <h3>추수감사절 행사</h3>
+                            <p>2024년 11월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="mission" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">선교</span>
+                            <h3>직장인 전도집회</h3>
+                            <p>2024년 10월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="worship" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">예배</span>
+                            <h3>특별 부흥회</h3>
+                            <p>2024년 9월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="mission" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">선교</span>
+                            <h3>도심 전도 활동</h3>
+                            <p>2024년 8월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="event" data-group="fishermen">
+                    <div class="gallery-image"></div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-content">
+                            <span class="category">행사</span>
+                            <h3>청년 체육대회</h3>
+                            <p>2024년 7월</p>
+                            <a href="#" class="view-project">자세히 보기 →</a>
                         </div>
                     </div>
                 </div>
@@ -206,24 +302,24 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
-                    <h4>Creative Agency</h4>
-                    <p>데이터, 크리에이티브, 기술을 연결하는 통합 마케팅 에이전시</p>
+                    <h4>Fishermen</h4>
+                    <p>내수동교회 청년부 - 사람을 낚는 어부가 되리라</p>
                 </div>
                 <div class="footer-col">
-                    <h4>Quick Links</h4>
+                    <h4>바로가기</h4>
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/work/">Work</a></li>
-                        <li><a href="/news/">News</a></li>
-                        <li><a href="/people/">People</a></li>
+                        <li><a href="/work/">사역</a></li>
+                        <li><a href="/news/">소식</a></li>
+                        <li><a href="/people/">청년부원</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Contact</h4>
+                    <h4>연락처</h4>
                     <ul>
-                        <li>Email: contact@agency.com</li>
+                        <li>Email: fishermen@naesudong.com</li>
                         <li>Tel: 02-1234-5678</li>
-                        <li>서울시 강남구</li>
+                        <li>서울 중구 내수동</li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -231,12 +327,12 @@
                     <div class="social-links">
                         <a href="#">Facebook</a>
                         <a href="#">Instagram</a>
-                        <a href="#">LinkedIn</a>
+                        <a href="#">YouTube</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Creative Agency. All Rights Reserved.</p>
+                <p>&copy; 2026 Fishermen 내수동교회 청년부. All Rights Reserved.</p>
             </div>
         </div>
     </footer>

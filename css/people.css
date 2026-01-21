@@ -1,7 +1,14 @@
 /* ===========================
    People Page Styles (people.html)
-   피플 페이지 전용 스타일
+   ?�플 ?�이지 ?�용 ?��???
    =========================== */
+
+/* ===========================
+   Page Header
+   =========================== */
+.header-content {
+    transition: opacity 0.3s ease;
+}
 
 /* ===========================
    Culture Section
@@ -14,6 +21,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
+    transition: opacity 0.3s ease;
 }
 
 .culture-text h2 {
@@ -62,7 +70,7 @@
     background: white;
     padding: 30px;
     border-radius: 10px;
-    transition: var(--transition);
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
 
 .team-member:hover {
@@ -74,8 +82,13 @@
     width: 150px;
     height: 150px;
     margin: 0 auto 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     border-radius: 50%;
+}
+
+/* Witness Theme */
+body.witness-theme .member-photo {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%);
 }
 
 .member-role {
@@ -109,6 +122,7 @@
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
 
 .department-card:hover {
@@ -138,10 +152,19 @@
    Careers Section
    =========================== */
 .careers-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     color: white;
     padding: 100px 0;
     text-align: center;
+}
+
+/* Witness Theme */
+body.witness-theme .careers-section {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%);
+}
+
+.careers-text {
+    transition: opacity 0.3s ease;
 }
 
 .careers-content h2 {
@@ -149,7 +172,8 @@
     margin-bottom: 20px;
 }
 
-.careers-content > p {
+.careers-content > p,
+.careers-text > p {
     font-size: 1.2rem;
     margin-bottom: 60px;
     opacity: 0.9;

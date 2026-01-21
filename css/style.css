@@ -132,7 +132,7 @@ img {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -292,7 +292,7 @@ blockquote {
 .ceo-image .image-placeholder {
     width: 100%;
     aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     border-radius: 10px;
 }
 
@@ -423,7 +423,7 @@ blockquote {
 .work-image {
     width: 100%;
     aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -537,7 +537,7 @@ blockquote {
 .page-header {
     padding-top: 150px;
     padding-bottom: 80px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     color: white;
     text-align: center;
 }
@@ -603,7 +603,7 @@ blockquote {
 .gallery-image {
     width: 100%;
     aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     transition: var(--transition);
 }
 
@@ -698,7 +698,7 @@ blockquote {
 .featured-image {
     width: 100%;
     aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     border-radius: 10px;
 }
 
@@ -772,7 +772,7 @@ blockquote {
 .news-image {
     width: 100%;
     aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
 }
 
 .news-content {
@@ -943,7 +943,7 @@ blockquote {
     width: 150px;
     height: 150px;
     margin: 0 auto 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     border-radius: 50%;
 }
 
@@ -1001,7 +1001,7 @@ blockquote {
 }
 
 .careers-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3a7bd5 0%, #2c5aa0 100%);
     color: white;
     padding: 100px 0;
     text-align: center;
@@ -1130,4 +1130,20 @@ blockquote {
 .scroll-reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ===========================
+   Witness Theme Overrides
+   =========================== */
+body.witness-theme .hero,
+body.witness-theme .contact,
+body.witness-theme .page-hero,
+body.witness-theme .featured-image,
+body.witness-theme .work-image,
+body.witness-theme .news-image,
+body.witness-theme .gallery-image,
+body.witness-theme .member-photo,
+body.witness-theme .careers-section,
+body.witness-theme .ceo-image .image-placeholder {
+    background: linear-gradient(135deg, #00d4c8 0%, #00b8a9 100%) !important;
 }
