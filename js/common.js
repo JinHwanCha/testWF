@@ -91,7 +91,7 @@ const GROUP_CONFIG = {
             description: '내수동교회 청년부 Fishermen이 여러분을 환영합니다'
         },
         stats: {
-            year: '1973',
+            year: '1979',
             members: '213',
             groups: '8',
             events: '17'
