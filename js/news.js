@@ -185,28 +185,93 @@ function renderNewsCards() {
         announcement: '공지',
         event: '행사',
         testimony: '간증',
-        mission: '선교'
+        mission: '선교',
+        notice: '공지' // alias
     };
     
-    newsGrid.innerHTML = newsData.map(item => `
-        <article class="news-card" data-category="${item.category}" data-group="${item.group}" data-description="${item.description || item.content}">
+    newsGrid.innerHTML = newsData.map((item, index) => `
+        <article class="news-card" data-category="${item.category}" data-group="${item.group}" data-description="${item.description || item.content}" data-index="${index}">
             <div class="news-image">${item.image ? `<img src="/${item.image}" alt="${item.title}" onerror="this.parentElement.style.display='none'">` : ''}</div>
             <div class="news-content">
                 <span class="news-tag">${categoryNames[item.category] || item.category}</span>
                 <h3>${item.title}</h3>
                 <p class="news-date">${item.date || new Date(item.createdAt).toLocaleDateString('ko-KR')}</p>
                 <p>${item.excerpt || (item.content ? item.content.substring(0, 100) + '...' : '')}</p>
-                <a href="#" class="read-more">더 보기 →</a>
+                <a href="#" class="read-more" data-index="${index}">더 보기 →</a>
             </div>
         </article>
     `).join('');
     
-    // Re-initialize after rendering
+    // Attach click events to "더 보기" buttons
+    attachReadMoreEvents();
+    
+    // Re-initialize filters
     initializeFilterButtons();
-    if (window.newsModalHandler) {
-        window.newsModalHandler.reattach();
-    }
     showPage();
+}
+
+// ===========================
+// Modal Functions
+// ===========================
+function attachReadMoreEvents() {
+    const readMoreButtons = document.querySelectorAll('.read-more');
+    const modal = document.getElementById('newsModal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    if (!modal) return;
+    
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalDate = document.getElementById('modalDate');
+    const modalDescription = document.getElementById('modalDescription');
+    
+    // 카테고리 이름 매핑
+    const categoryNames = {
+        announcement: '공지',
+        event: '행사',
+        testimony: '간증',
+        mission: '선교',
+        notice: '공지'
+    };
+    
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const index = parseInt(button.getAttribute('data-index'));
+            const item = newsData[index];
+            
+            if (item) {
+                modalTitle.textContent = item.title;
+                modalCategory.textContent = categoryNames[item.category] || item.category;
+                modalDate.textContent = item.date || new Date(item.createdAt).toLocaleDateString('ko-KR');
+                modalDescription.textContent = item.description || item.content || '';
+                
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+            }
+        });
+    });
+    
+    // Close modal events
+    if (closeModal) {
+        closeModal.onclick = () => {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        };
+    }
+    
+    window.onclick = (event) => {
+        if (event.target === modal) {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    };
 }
 
 // ===========================
@@ -345,15 +410,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     renderNewsCards();
-    
-    // Initialize modal system
-    window.newsModalHandler = initModal({
-        modalId: 'newsModal',
-        triggerSelector: '.read-more',
-        parentSelector: '.news-card',
-        titleSelector: 'h3',
-        categorySelector: '.news-tag',
-        dateSelector: '.news-date',
-        descriptionAttr: 'data-description'
-    });
 });

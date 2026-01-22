@@ -46,10 +46,10 @@ const GROUP_CONFIG = {
             description: '내수동교회 대학부 Witness가 여러분을 환영합니다'
         },
         stats: {
-            year: '2015',
-            members: '38',
-            groups: '5',
-            events: '10'
+            year: '1973',
+            members: '175',
+            groups: '6',
+            events: '15'
         }
     },
     fishermen: {
@@ -91,10 +91,10 @@ const GROUP_CONFIG = {
             description: '내수동교회 청년부 Fishermen이 여러분을 환영합니다'
         },
         stats: {
-            year: '2010',
-            members: '45',
-            groups: '6',
-            events: '12'
+            year: '1973',
+            members: '213',
+            groups: '8',
+            events: '17'
         }
     }
 };
