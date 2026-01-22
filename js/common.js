@@ -714,9 +714,3 @@ function initModal(config) {
         reattach: attachListeners
     };
 }
-
-// ===========================
-// Console Message
-// ===========================
-console.log('%c🚀 Creative Agency Website', 'font-size: 20px; font-weight: bold; color: #667eea;');
-console.log('%cBuilt with HTML, CSS, and JavaScript', 'font-size: 14px; color: #764ba2;');

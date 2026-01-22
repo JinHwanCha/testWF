@@ -47,7 +47,7 @@ function initializeTeamMemberInteractions() {
             member.addEventListener('click', () => {
                 const memberName = member.querySelector('h3');
                 if (memberName) {
-                    console.log('Team member clicked:', memberName.textContent);
+                    // Member clicked event could be handled here
                 }
             });
         });

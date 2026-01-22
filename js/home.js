@@ -90,7 +90,6 @@ cards.forEach(card => {
 async function renderRecentWork() {
     const recentWorkGrid = document.getElementById('recentWorkGrid');
     if (!recentWorkGrid) {
-        console.log('recentWorkGrid not found!');
         return;
     }
     
@@ -107,8 +106,6 @@ async function renderRecentWork() {
     const currentGroup = urlParams.get('group') || 
                         (document.body.classList.contains('witness-theme') ? 'witness' : 'fishermen');
     
-    console.log('Current group:', currentGroup);
-    
     // Load work data from JSON
     let workData = [];
     if (typeof loadJSONData !== 'undefined') {
@@ -116,14 +113,11 @@ async function renderRecentWork() {
     } else {
         workData = window.workData || [];
     }
-    console.log('workData loaded:', workData.length, 'items');
     
     // Filter by current group and get latest 3 items
     const recentItems = workData
         .filter(item => item.group === currentGroup)
         .slice(0, 3);
-    
-    console.log('Recent items to display:', recentItems.length);
     
     // Render items
     recentWorkGrid.innerHTML = recentItems.map(item => `
@@ -210,13 +204,11 @@ function attachWorkItemListeners(categoryNames) {
 document.addEventListener('DOMContentLoaded', () => {
     // Delay rendering to ensure work.js is fully loaded
     setTimeout(() => {
-        console.log('Starting renderRecentWork...');
         renderRecentWork();
     }, 100);
 });
 
 // Listen for group change events from common.js toggle
 document.addEventListener('groupChanged', (e) => {
-    console.log('Group changed to:', e.detail.group);
     renderRecentWork();
 });
