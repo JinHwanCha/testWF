@@ -87,7 +87,7 @@ cards.forEach(card => {
 // ===========================
 // Recent Work Section
 // ===========================
-function renderRecentWork() {
+async function renderRecentWork() {
     const recentWorkGrid = document.getElementById('recentWorkGrid');
     if (!recentWorkGrid) {
         console.log('recentWorkGrid not found!');
@@ -109,8 +109,13 @@ function renderRecentWork() {
     
     console.log('Current group:', currentGroup);
     
-    // Get work data from work.js if available
-    const workData = window.workData || [];
+    // Load work data from JSON
+    let workData = [];
+    if (typeof loadJSONData !== 'undefined') {
+        workData = await loadJSONData('work.json');
+    } else {
+        workData = window.workData || [];
+    }
     console.log('workData loaded:', workData.length, 'items');
     
     // Filter by current group and get latest 3 items
@@ -125,14 +130,14 @@ function renderRecentWork() {
         <div class="work-item" 
              data-title="${item.title}"
              data-category="${item.category}"
-             data-date="${item.date}"
+             data-date="${item.date || item.createdAt || ''}"
              data-description="${item.description}">
             <div class="work-image">
-                ${item.img ? `<img src="${item.img}" alt="${item.title}">` : ''}
+                ${item.image ? `<img src="/${item.image}" alt="${item.title}" onerror="this.src='/images/placeholder.jpg'">` : ''}
             </div>
             <div class="work-info">
                 <h3>${item.title}</h3>
-                <p>${item.date}</p>
+                <p>${item.date || item.createdAt || ''}</p>
             </div>
         </div>
     `).join('');

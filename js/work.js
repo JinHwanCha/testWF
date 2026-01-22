@@ -6,7 +6,8 @@
 // ===========================
 // Work Gallery Data
 // ===========================
-const workData = [
+let workData = [
+    // 기본 데이터 (관리자 페이지에서 등록 전까지 표시)
     // Witness 활동 (8개)
     {
         group: 'witness',
@@ -165,16 +166,24 @@ function renderGalleryItems() {
     const galleryGrid = document.getElementById('galleryGrid');
     if (!galleryGrid) return;
     
+    // 카테고리 이름 매핑
+    const categoryNames = {
+        worship: '예배',
+        event: '행사',
+        mission: '선교',
+        service: '봉사'
+    };
+    
     galleryGrid.innerHTML = workData.map(item => `
         <div class="gallery-item" data-category="${item.category}" data-group="${item.group}" data-description="${item.description}">
             <div class="gallery-image">
-                ${item.img ? `<img src="${item.img}" alt="${item.title}">` : ''}
+                ${item.image ? `<img src="/${item.image}" alt="${item.title}" onerror="this.parentElement.style.background='#f0f0f0'">` : '<div style="background: #f0f0f0; height: 100%;"></div>'}
             </div>
             <div class="gallery-overlay">
                 <div class="gallery-content">
-                    <span class="category">${categoryNames[item.category]}</span>
+                    <span class="category">${categoryNames[item.category] || item.category}</span>
                     <h3>${item.title}</h3>
-                    <p>${item.date}</p>
+                    <p>${item.date || new Date(item.createdAt).toLocaleDateString('ko-KR')}</p>
                     <a href="#" class="view-project">자세히 보기 →</a>
                 </div>
             </div>
@@ -271,7 +280,15 @@ workItems.forEach(item => {
 // ===========================
 // Initialize on Page Load
 // ===========================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // JSON 데이터 로드 (있으면 기본 데이터를 대체)
+    if (typeof loadJSONData !== 'undefined') {
+        const jsonData = await loadJSONData('work.json');
+        if (jsonData && jsonData.length > 0) {
+            workData = jsonData;
+        }
+    }
+    
     // Render gallery items first
     renderGalleryItems();
     

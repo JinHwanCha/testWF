@@ -3,21 +3,55 @@
 // 피플 페이지 전용 기능
 // ===========================
 
+// People 데이터
+let peopleData = [];
+
+// ===========================
+// Render People Grid
+// ===========================
+function renderPeopleGrid() {
+    const teamGrid = document.querySelector('.team-grid');
+    if (!teamGrid || peopleData.length === 0) return;
+    
+    teamGrid.innerHTML = peopleData.map(person => `
+        <div class="team-member" data-group="${person.group || 'fishermen'}">
+            <div class="member-photo">
+                ${person.image ? `<img src="/${person.image}" alt="${person.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">` : ''}
+            </div>
+            <h3>${person.name}</h3>
+            <p class="member-role">${person.position || ''}</p>
+            <p class="member-bio">${person.bio || ''}</p>
+        </div>
+    `).join('');
+    
+    // Re-initialize interactions
+    initializeTeamMemberInteractions();
+}
+
 // ===========================
 // Team Member Interactions
 // ===========================
-const teamMembers = document.querySelectorAll('.team-member');
+function initializeTeamMemberInteractions() {
+    const teamMembers = document.querySelectorAll('.team-member');
 
-if (teamMembers.length > 0) {
-    teamMembers.forEach(member => {
-        member.addEventListener('mouseenter', () => {
-            member.style.transform = 'translateY(-10px)';
+    if (teamMembers.length > 0) {
+        teamMembers.forEach(member => {
+            member.addEventListener('mouseenter', () => {
+                member.style.transform = 'translateY(-10px)';
+            });
+            
+            member.addEventListener('mouseleave', () => {
+                member.style.transform = 'translateY(0)';
+            });
+            
+            member.addEventListener('click', () => {
+                const memberName = member.querySelector('h3');
+                if (memberName) {
+                    console.log('Team member clicked:', memberName.textContent);
+                }
+            });
         });
-        
-        member.addEventListener('mouseleave', () => {
-            member.style.transform = 'translateY(0)';
-        });
-    });
+    }
 }
 
 // ===========================
@@ -48,15 +82,18 @@ if (departmentCards.length > 0) {
 }
 
 // ===========================
-// Leadership Team Click Events (optional)
+// Initialize on Page Load
 // ===========================
-const leadershipProfiles = document.querySelectorAll('.team-member');
-
-if (leadershipProfiles.length > 0) {
-    leadershipProfiles.forEach(profile => {
-        profile.addEventListener('click', () => {
-            // 여기에 모달 창이나 상세 프로필 보기 기능을 추가할 수 있습니다
-            console.log('Team member clicked:', profile.querySelector('h3')?.textContent);
-        });
-    });
-}
+document.addEventListener('DOMContentLoaded', async () => {
+    // 기존 HTML에 있는 team members 초기화
+    initializeTeamMemberInteractions();
+    
+    // JSON 데이터 로드
+    if (typeof loadJSONData !== 'undefined') {
+        const jsonData = await loadJSONData('people.json');
+        if (jsonData && jsonData.length > 0) {
+            peopleData = jsonData;
+            renderPeopleGrid();
+        }
+    }
+});

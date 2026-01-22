@@ -6,7 +6,8 @@
 // ===========================
 // News Data
 // ===========================
-const newsData = [
+let newsData = [
+    // 기본 데이터 (관리자 페이지에서 등록 전까지 표시)
     // Witness News (8)
     {
         group: 'witness',
@@ -179,14 +180,22 @@ function renderNewsCards() {
     const newsGrid = document.querySelector('.news-grid');
     if (!newsGrid) return;
     
+    // 카테고리 이름 매핑
+    const categoryNames = {
+        announcement: '공지',
+        event: '행사',
+        testimony: '간증',
+        mission: '선교'
+    };
+    
     newsGrid.innerHTML = newsData.map(item => `
-        <article class="news-card" data-category="${item.category}" data-group="${item.group}" data-description="${item.description}">
-            <div class="news-image">${item.img ? `<img src="${item.img}" alt="${item.title}">` : ''}</div>
+        <article class="news-card" data-category="${item.category}" data-group="${item.group}" data-description="${item.description || item.content}">
+            <div class="news-image">${item.image ? `<img src="/${item.image}" alt="${item.title}" onerror="this.parentElement.style.display='none'">` : ''}</div>
             <div class="news-content">
-                <span class="news-tag">${categoryNames[item.category]}</span>
+                <span class="news-tag">${categoryNames[item.category] || item.category}</span>
                 <h3>${item.title}</h3>
-                <p class="news-date">${item.date}</p>
-                <p>${item.excerpt}</p>
+                <p class="news-date">${item.date || new Date(item.createdAt).toLocaleDateString('ko-KR')}</p>
+                <p>${item.excerpt || (item.content ? item.content.substring(0, 100) + '...' : '')}</p>
                 <a href="#" class="read-more">더 보기 →</a>
             </div>
         </article>
@@ -326,7 +335,15 @@ function initializeFilterButtons() {
 // ===========================
 // Initialize on Page Load
 // ===========================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // JSON 데이터 로드 (있으면 기본 데이터를 대체)
+    if (typeof loadJSONData !== 'undefined') {
+        const jsonData = await loadJSONData('news.json');
+        if (jsonData && jsonData.length > 0) {
+            newsData = jsonData;
+        }
+    }
+    
     renderNewsCards();
     
     // Initialize modal system
