@@ -129,7 +129,6 @@ body.witness-theme .member-photo {
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     text-align: center;
-    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
 
 .department-card:hover {
