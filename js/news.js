@@ -413,8 +413,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Fishermen이 기본
-    renderFeaturedNews('fishermen');
+    // URL 파라미터 또는 body 클래스에서 현재 그룹 확인 후 렌더링
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialGroup = urlParams.get('group') ||
+        (document.body.classList.contains('witness-theme') ? 'witness' : 'fishermen');
+    renderFeaturedNews(initialGroup);
 
     // 그룹 토글 시 최신글 변경
     document.addEventListener('groupChanged', (e) => {
